@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skin rose
+hide empty method
+left to right direction
+
+entity persona{
+    * Correo
+    * Contraseña
+    * Numero de strike
+    * Bloqueada
+    * Fecha de bloqueo
+
+}
+
+entity pic{
+    * Latitud
+    * Longitud
+    * Número reportes
+    * Fecha
+    * Foto
+    * Bloqueada
+    * Número vistas
+}
+
+pic"*" -- "1"persona: < toma
+
+entity pictwin{
+    * Fencha vencimiento
+    * Vencido
+    * Reportado
+}
+pictwin "*"-- "1"pic: > mi
+pictwin "*"-- "1"pic: > twin
+pictwin "*"-- "1"persona: < posee
+
+@enduml

@@ -1,24 +1,35 @@
-// TheMain.java
+/*
+ * Copyright (c) 2024. Departamento de Ingenieria de Sistemas y Computacion
+ */
+
 package cl.ucn.disc.dsm.pictwin;
 
 import cl.ucn.disc.dsm.pictwin.model.Persona;
 import cl.ucn.disc.dsm.pictwin.model.PicTwin;
 import cl.ucn.disc.dsm.pictwin.services.Controller;
 import cl.ucn.disc.dsm.pictwin.utils.FileUtils;
+
 import io.ebean.DB;
+
 import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.util.List;
 
+/** The Main. */
 @Slf4j
 public class TheMain {
 
+
+    /** Starting point. */
     public static void main(String[] args) {
 
         log.debug("Starting TheMain ..");
 
+        // the controller
         Controller c = new Controller(DB.getDefault());
 
+        // seed the database
         if (c.seed()) {
             log.debug("Seeded the database.");
         }
@@ -37,11 +48,14 @@ public class TheMain {
         log.debug("Persona: {}", p2);
 
         List<PicTwin> pts = c.getPicTwins(p.getUlid());
-        for (PicTwin ptt : pts) {
+        for (PicTwin ptt: pts) {
             log.debug("PicTwin: {}", pt);
         }
 
         log.debug("Done.");
     }
 }
+
+
+
 

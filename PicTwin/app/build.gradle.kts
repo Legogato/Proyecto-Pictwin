@@ -1,8 +1,26 @@
+/*
+ * Copyright (c) 2024. Desarrollo de Soluciones Moviles, DISC.
+ */
+
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
+
+fun generateVersionCode(): Int {
+    val formatter = DateTimeFormatter.ofPattern("yywweHHmm")
+    val now = ZonedDateTime.now(ZoneId.of("America/Santiago"))
+    return now.format(formatter).toInt()
+}
+
+logger.lifecycle("Using VERSION_CODE: ${generateVersionCode()}")
 
 android {
     namespace = "cl.ucn.disc.dsm.pictwin"
@@ -10,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "cl.ucn.disc.dsm.pictwin"
-        minSdk = 24
+        minSdk = 33
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -46,6 +64,23 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3.logging.interceptor)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation)
+
+    implementation(libs.slf4j.api)
+    runtimeOnly(libs.slf4j.simple)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

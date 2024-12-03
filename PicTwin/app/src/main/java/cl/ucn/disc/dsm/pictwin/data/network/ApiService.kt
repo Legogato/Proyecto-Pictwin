@@ -5,7 +5,6 @@
 package cl.ucn.disc.dsm.pictwin.data.network
 
 import cl.ucn.disc.dsm.pictwin.data.model.Persona
-import cl.ucn.disc.dsm.pictwin.data.model.PicTwin
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
